@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- M3 Primary -->
+    <color name="primary">#FF1565C0</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="primary_container">#FFD1E4FF</color>
+    <color name="on_primary_container">#FF001D36</color>
+
+    <!-- M3 Secondary -->
+    <color name="secondary">#FF535F70</color>
+    <color name="on_secondary">#FFFFFFFF</color>
+    <color name="secondary_container">#FFD7E3F7</color>
+    <color name="on_secondary_container">#FF101C2B</color>
+
+    <!-- M3 Tertiary -->
+    <color name="tertiary">#FF6B5778</color>
+    <color name="on_tertiary">#FFFFFFFF</color>
+
+    <!-- M3 Error -->
+    <color name="error">#FFBA1A1A</color>
+    <color name="on_error">#FFFFFFFF</color>
+    <color name="error_container">#FFFFDAD6</color>
+    <color name="on_error_container">#FF410002</color>
+
+    <!-- M3 Surface -->
+    <color name="surface">#FFFDFCFF</color>
+    <color name="on_surface">#FF1A1C1E</color>
+    <color name="surface_variant">#FFE1E2EC</color>
+    <color name="on_surface_variant">#FF44474F</color>
+    <color name="outline">#FF74777F</color>
+    <color name="outline_variant">#FFC4C6D0</color>
+    <color name="surface_container_low">#FFF3F3F6</color>
+    <color name="surface_container">#FFEDEDF0</color>
+
+    <!-- Status Colors -->
+    <color name="warning">#FFFFA000</color>
+    <color name="success">#FF2E7D32</color>
+    <color name="success_container">#FFC8E6C9</color>
+    <color name="on_success_container">#FF002106</color>
+
+    <!-- System Bars -->
+    <color name="status_bar">#FF0D47A1</color>
+
+    <!-- Overlay -->
+    <color name="overlay_background">#B3000000</color>
+</resources>

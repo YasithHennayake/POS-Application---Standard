@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">POS Sale</string>
+    <string name="placeholder_message">POS Sale Application</string>
+    <string name="sale_placeholder">Sale screen</string>
+
+    <!-- Header -->
+    <string name="terminal_label">Terminal</string>
+    <string name="transactions_today">Transactions Today: %d</string>
+
+    <!-- Transaction Types -->
+    <string name="transaction_type_sale">SALE</string>
+    <string name="transaction_type_refund">REFUND</string>
+
+    <!-- Amount -->
+    <string name="amount_label">Amount</string>
+    <string name="amount_hint">Enter amount</string>
+    <string name="amount_prefix">LKR</string>
+    <string name="amount_helper">Enter transaction amount in LKR</string>
+    <string name="amount_tap_hint">Tap to enter amount</string>
+
+    <!-- Action Buttons -->
+    <string name="btn_clear_all">CLEAR ALL</string>
+    <string name="btn_charge">CHARGE</string>
+    <string name="btn_charge_with_amount">CHARGE  LKR %s</string>
+    <string name="btn_cancel">CANCEL</string>
+    <string name="btn_new_transaction">NEW TRANSACTION</string>
+
+    <!-- Validation Errors -->
+    <string name="error_amount_zero">Please enter an amount</string>
+    <string name="error_amount_exceeds_max">Amount exceeds maximum limit</string>
+
+    <!-- Processing -->
+    <string name="processing_message">Processing Transaction\u2026</string>
+
+    <!-- Result -->
+    <string name="result_approved">APPROVED</string>
+    <string name="result_declined">DECLINED</string>
+    <string name="label_transaction_id">Transaction ID</string>
+    <string name="label_amount">Amount</string>
+    <string name="label_type">Type</string>
+    <string name="label_time">Time</string>
+
+    <!-- Cancellation Dialog -->
+    <string name="transaction_cancelled">Transaction cancelled</string>
+    <string name="transaction_cancelled_title">Transaction Cancelled</string>
+    <string name="transaction_cancelled_message">The transaction has been cancelled successfully.</string>
+    <string name="btn_ok">OK</string>
+</resources>

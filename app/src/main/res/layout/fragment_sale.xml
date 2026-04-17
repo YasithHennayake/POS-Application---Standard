@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".ui.fragments.sale.SaleFragment">
+
+    <!-- Main Scrollable Content -->
+    <ScrollView
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 1. Top App Bar / Header -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                app:titleTextColor="@color/on_primary"
+                app:subtitleTextColor="@color/on_primary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/spacing_sm"
+                    android:paddingEnd="@dimen/spacing_md">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvMerchantName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/on_primary"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold"
+                            tools:text="NOVUS POS MERCHANT" />
+
+                        <TextView
+                            android:id="@+id/tvTerminalId"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:alpha="0.85"
+                            android:textColor="@color/on_primary"
+                            android:textSize="@dimen/text_size_small"
+                            tools:text="Terminal TID-001" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvDateTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/on_primary"
+                            android:textSize="@dimen/text_size_small"
+                            tools:text="2026-04-06 14:30" />
+
+                        <TextView
+                            android:id="@+id/tvTodayCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:alpha="0.85"
+                            android:textColor="@color/on_primary"
+                            android:textSize="@dimen/text_size_small"
+                            tools:text="Transactions Today: 12" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <!-- Content area with padding -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_md">
+
+                <!-- 2. Transaction Type Toggle -->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/toggleTransactionType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:selectionRequired="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTypeSale"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/txn_type_button_height"
+                        android:layout_weight="1"
+                        android:text="@string/transaction_type_sale"
+                        android:textSize="@dimen/text_size_txn_type"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnTypeRefund"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/txn_type_button_height"
+                        android:layout_weight="1"
+                        android:text="@string/transaction_type_refund"
+                        android:textSize="@dimen/text_size_txn_type"
+                        android:textStyle="bold" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <!-- 3. Amount Display Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardAmount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    app:cardBackgroundColor="?attr/colorSurface"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    app:cardElevation="@dimen/card_elevation"
+                    app:strokeColor="@color/outline_variant"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_lg">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/amount_label"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="@dimen/text_size_small"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1" />
+
+                        <TextView
+                            android:id="@+id/tvAmountDisplay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_sm"
+                            android:textColor="?attr/colorPrimary"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            tools:text="LKR 0.00" />
+
+                        <TextView
+                            android:id="@+id/tvAmountError"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:textColor="@color/error"
+                            android:textSize="@dimen/text_size_small"
+                            android:visibility="gone"
+                            tools:text="Please enter an amount" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_xs"
+                            android:text="@string/amount_tap_hint"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="@dimen/text_size_small"
+                            android:alpha="0.6" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Hidden EditText to capture keyboard input -->
+                <EditText
+                    android:id="@+id/etHiddenInput"
+                    android:layout_width="1dp"
+                    android:layout_height="1dp"
+                    android:alpha="0"
+                    android:inputType="number"
+                    android:importantForAutofill="no"
+                    tools:ignore="LabelFor" />
+
+                <!-- 4. Transaction Info Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    app:cardBackgroundColor="@color/surface_container_low"
+                    app:cardCornerRadius="@dimen/card_corner_radius"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_md">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Transaction Summary"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:textSize="@dimen/text_size_small"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="@dimen/spacing_sm"
+                            android:background="@color/outline_variant" />
+
+                        <!-- Type Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingVertical="@dimen/spacing_xs">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/label_type"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="@dimen/text_size_body" />
+
+                            <TextView
+                                android:id="@+id/tvSummaryType"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/colorOnSurface"
+                                android:textSize="@dimen/text_size_body"
+                                android:textStyle="bold"
+                                tools:text="SALE" />
+
+                        </LinearLayout>
+
+                        <!-- Amount Row -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingVertical="@dimen/spacing_xs">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/label_amount"
+                                android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="@dimen/text_size_body" />
+
+                            <TextView
+                                android:id="@+id/tvSummaryAmount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="?attr/colorPrimary"
+                                android:textSize="@dimen/text_size_body"
+                                android:textStyle="bold"
+                                tools:text="LKR 0.00" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Spacer to push buttons down -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <!-- 5. Action Buttons -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCharge"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/charge_button_height"
+                    android:layout_marginTop="@dimen/spacing_lg"
+                    android:text="@string/btn_charge"
+                    android:textSize="@dimen/text_size_charge"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearAll"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/charge_button_height"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:text="@string/btn_clear_all"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_charge"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- 6. Processing Overlay -->
+    <FrameLayout
+        android:id="@+id/processingOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="240dp"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_xl">
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    app:indicatorSize="48dp"
+                    app:trackCornerRadius="4dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_lg"
+                    android:text="@string/processing_message"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCancelProcessing"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:text="@string/btn_cancel"
+                    android:textColor="@color/error" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+    <!-- 7. Result Overlay -->
+    <FrameLayout
+        android:id="@+id/resultOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/overlay_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="@dimen/spacing_lg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_lg">
+
+                <!-- Status Icon -->
+                <TextView
+                    android:id="@+id/tvResultIcon"
+                    android:layout_width="@dimen/result_icon_size"
+                    android:layout_height="@dimen/result_icon_size"
+                    android:gravity="center"
+                    android:textSize="36sp"
+                    tools:text="&#x2713;" />
+
+                <TextView
+                    android:id="@+id/tvResultStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_sm"
+                    android:textSize="@dimen/text_size_result_status"
+                    android:textStyle="bold"
+                    tools:text="APPROVED" />
+
+                <TextView
+                    android:id="@+id/tvResultMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textSize="@dimen/text_size_body"
+                    tools:text="Transaction approved" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="@dimen/spacing_md"
+                    android:background="@color/outline_variant" />
+
+                <!-- Detail Rows -->
+                <!-- Transaction ID -->
+                <LinearLayout
+                    android:id="@+id/rowTransactionId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_transaction_id"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="@dimen/text_size_body" />
+
+                    <TextView
+                        android:id="@+id/tvResultTransactionId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold"
+                        tools:text="TXN20260406143000123" />
+
+                </LinearLayout>
+
+                <!-- Amount -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_amount"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="@dimen/text_size_body" />
+
+                    <TextView
+                        android:id="@+id/tvResultAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorPrimary"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold"
+                        tools:text="LKR 12.50" />
+
+                </LinearLayout>
+
+                <!-- Type -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_type"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="@dimen/text_size_body" />
+
+                    <TextView
+                        android:id="@+id/tvResultDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="@dimen/text_size_body"
+                        tools:text="SALE" />
+
+                </LinearLayout>
+
+                <!-- Time -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/spacing_xs">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/label_time"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="@dimen/text_size_body" />
+
+                    <TextView
+                        android:id="@+id/tvResultTimestamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="@dimen/text_size_body"
+                        tools:text="2026-04-06 14:30:00" />
+
+                </LinearLayout>
+
+                <!-- New Transaction Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnNewTransaction"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:layout_marginTop="@dimen/spacing_lg"
+                    android:text="@string/btn_new_transaction"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </FrameLayout>
+
+</FrameLayout>
